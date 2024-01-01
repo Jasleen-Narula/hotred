@@ -1,10 +1,16 @@
 # Demo E-commerce Project
 
+I'm creating an e-commerce project to demonstrate and practice my knowledge and skills. This project is a work in progress.
+
 GraphQL playground link: https://hot-red-web-service.onrender.com/graphql
 
 ## Description
 
 Made using [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+
+The project contains the following modules:
+- Orders
+- Returns
 
 ## Installation
 
