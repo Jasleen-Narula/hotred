@@ -1,0 +1,143 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input CreateOrderInput {
+  """Address to which order is to be delivered"""
+  deliveryAddress: String!
+
+  """
+  Item ID for which order is generated. Please send "9" as user Id for demo.
+  """
+  itemId: String!
+
+  """Mode of payment for the Order"""
+  paymentMode: PaymentMode!
+
+  """
+  User ID for which order is generated. Please send "1" as user Id for demo.
+  """
+  userId: String!
+}
+
+input CreateReturnInput {
+  """Order ID for which return is generated"""
+  orderId: String!
+
+  """What is reason of the return?"""
+  reason: String!
+
+  """
+  User ID for which return is generated. Please send "1" as user Id for demo.
+  """
+  userId: String!
+}
+
+"""Date custom scalar type"""
+scalar Date
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Mutation {
+  createOrder(createOrderInput: CreateOrderInput!): Order!
+  createReturn(createReturnInput: CreateReturnInput!): Return!
+  removeOrder(id: String!): Order!
+  removeReturn(id: String!): Return!
+  updateOrder(updateOrderInput: UpdateOrderInput!): Order!
+  updateReturn(updateReturnInput: UpdateReturnInput!): Return!
+}
+
+type Order {
+  createdAt: DateTime!
+
+  """Address to which order is to be delivered"""
+  deliveryAddress: String!
+
+  """Unique identifier of the order"""
+  id: ID!
+
+  """Item ID for which order is generated"""
+  itemId: String!
+
+  """Mode of payment for the Order"""
+  paymentMode: PaymentMode!
+
+  """Status of the Order"""
+  status: OrderStatus!
+
+  """User ID for which order is generated"""
+  userId: String!
+}
+
+enum OrderStatus {
+  CANCELLED
+  CONFIRMED
+  DELIVERED
+  PENDING
+}
+
+enum PaymentMode {
+  COD
+  ONLINE
+}
+
+type Query {
+  order(id: String!): Order!
+  orders: [Order!]!
+  return(id: String!): Return!
+  returns: [Return!]!
+}
+
+"""Return model"""
+type Return {
+  createdAt: DateTime!
+
+  """Unique identifier of the return"""
+  id: ID!
+
+  """Order ID for which return is generated"""
+  orderId: String!
+
+  """What is reason of the return?"""
+  reason: String!
+
+  """Status of the Return"""
+  status: ReturnStatus!
+}
+
+enum ReturnStatus {
+  APPROVED
+  COMPLETED
+  PENDING
+  REJECTED
+}
+
+input UpdateOrderInput {
+  """Address to which order is to be delivered"""
+  deliveryAddress: String
+  id: String!
+
+  """Mode of payment for the Order"""
+  paymentMode: PaymentMode
+
+  """
+  User ID for which order is generated. Please send "1" as user Id for demo.
+  """
+  userId: String
+}
+
+input UpdateReturnInput {
+  """Order ID for which return is generated"""
+  id: ID!
+
+  """What is reason of the return?"""
+  reason: String
+
+  """
+  User ID for which return is generated. Please send "1" as user Id for demo.
+  """
+  userId: String
+}
